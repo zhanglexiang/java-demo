@@ -1,5 +1,3 @@
-# SpringBoot常用框架
-
 ## Spring Validation
 
 Java API规范(JSR303)定义了Bean校验的标准validation-api，但没有提供实现。hibernate validation是对这个规范的实现，并增加了校验注解如@Email、@Length等。
