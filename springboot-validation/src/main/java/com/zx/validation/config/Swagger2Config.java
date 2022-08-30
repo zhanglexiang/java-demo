@@ -19,6 +19,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
+                // 配置Controller所在包
                 .apis(RequestHandlerSelectors.basePackage("com.zx.validation.web"))
                 .paths(PathSelectors.any())
                 .build();
@@ -27,6 +28,7 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("springboot validation-demo")
+                // 概述
                 .description("接口")
                 .contact(new Contact("zl", "", "zhanglexiang@aliyun.com"))
                 .version("1.0")
