@@ -480,10 +480,10 @@ Spring Validation默认会校验完所有字段，然后才抛出异常。可以
 
 Spring Validation 不仅只能用在接口上，Service层的方法上也一样可以用，其底层实现原理就是AOP，具体来说是通过MethodValidationPostProcessor动态注册AOP切面，然后使用MethodValidationInterceptor对切点方法织入增强。
 
-#### 源码： [https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation]()
+#### 源码： [https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation](https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation)
 
 
-## Web项目API文档
+## API文档生成的几种方案
 
 ### Springfox-swagger2
 
@@ -549,6 +549,19 @@ public class Swagger2Config {
 ```
 
 
-服务启动后访问：[http://127.0.0.1:21000/swagger-ui/index.html]()
+服务启动后访问：[http://127.0.0.1:21000/swagger-ui/index.html](http://127.0.0.1:21000/swagger-ui/index.html)
 
 ![1661862602356](image/README/1661862602356.png)
+
+
+### swagger2markup基于Springfox生成离线html api文档
+
+#### 引入依赖
+
+```xml
+<dependency>
+    <groupId>io.github.swagger2markup</groupId>
+    <artifactId>swagger2markup</artifactId>
+    <version>1.3.1</version>
+</dependency>
+```
