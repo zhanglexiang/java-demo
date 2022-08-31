@@ -485,7 +485,7 @@ Spring Validation 不仅只能用在接口上，Service层的方法上也一样�
 
 ## API文档生成的几种方案
 
-### Springfox-swagger2
+### 1. Springfox-swagger2
 
 #### **Swagger简介**
 
@@ -554,7 +554,7 @@ public class Swagger2Config {
 ![1661862602356](image/README/1661862602356.png)
 
 
-### swagger2markup基于Springfox生成离线html api文档
+### 2. Swagger2markup基于Springfox生成离线html api文档
 
 #### 引入依赖
 
