@@ -576,7 +576,7 @@ public class UserController {
 }
 ```
 
-服务启动后访问：http://127.0.0.1:21000/swagger-ui/index.html
+服务启动后访问：[http://127.0.0.1:21000/swagger-ui/index.html]
 
 ![1661862602356](image/README/1661862602356.png)
 
