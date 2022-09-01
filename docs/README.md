@@ -1,5 +1,3 @@
-
-
 本文档demo全部基于Spring Boot 2.7.3 如有错误请检查是否为包版本冲突
 
 ## SpringBoot Validation
@@ -482,7 +480,6 @@ Spring Validation 不仅只能用在接口上，Service层的方法上也一样�
 
 #### 源码： [https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation](https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation)
 
-
 ## API文档生成的几种方案
 
 ### 1. Springfox-swagger2
@@ -494,7 +491,6 @@ Spring Validation 不仅只能用在接口上，Service层的方法上也一样�
 #### **Springfox-swagger简介**
 
     鉴于swagger的强大功能，Spring把swagger集成到自己的项目里，整了一个spring-swagger，后来演变成springfox。springfox本身只是利用自身的aop的特点，通过plug的方式把swagger集成了进来，它本身对业务api的生成，还是依靠swagger来实现。
-
 
 本文档仅简单的介绍下Springfox-swagger的入门，深入使用Springfox-swagger还是有比较多的坑的。
 
@@ -511,6 +507,7 @@ Spring Validation 不仅只能用在接口上，Service层的方法上也一样�
 #### 配置Swagger Config
 
 ```java
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -549,10 +546,44 @@ public class Swagger2Config {
 ```
 
 
-服务启动后访问：[http://127.0.0.1:21000/swagger-ui/index.html](http://127.0.0.1:21000/swagger-ui/index.html)
+#### 接口中增加swagger相关注释
+
+```java
+import com.zx.common.result.HttpResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@Slf4j
+@Api(tags = "用户")
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @ApiOperation(value = "查询用户")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "userId", value="用户id", paramType="path", required=true),
+    })
+    @GetMapping("{userId}")
+    public HttpResult detail(@PathVariable("userId") Long userId) {
+        return HttpResult.success();
+    }
+
+
+}
+```
+
+
+
+服务启动后访问：[http://127.0.0.1:21000/swagger-ui/index.html](http://127.0.0.1:21000/swagger-ui/index.html)  
 
 ![1661862602356](image/README/1661862602356.png)
-
 
 ### 2. Swagger2markup基于Springfox生成离线html api文档
 
@@ -564,4 +595,119 @@ public class Swagger2Config {
     <artifactId>swagger2markup</artifactId>
     <version>1.3.1</version>
 </dependency>
+
+<plugin>
+	<groupId>org.asciidoctor</groupId>
+	<artifactId>asciidoctor-maven-plugin</artifactId>
+	<version>1.5.6</version>
+	<configuration>
+	    <!--asciidoc文件目录-->
+	    <sourceDirectory>src/main/resources/ascii-docs</sourceDirectory>
+	    <!---生成html的路径-->
+	    <outputDirectory>src/main/resources/ascii-docs/html</outputDirectory>
+	    <backend>html</backend>
+	    <sourceHighlighter>coderay</sourceHighlighter>
+	    <attributes>
+	        <!--导航栏在左-->
+	        <toc>left</toc>
+	        <!--显示层级数-->
+	        <!--<toclevels>3</toclevels>-->
+	        <!--自动打数字序号-->
+	        <sectnums>true</sectnums>
+	    </attributes>
+	</configuration>
+</plugin>
 ```
+
+
+#### 服务启动状态下执行main方法
+
+```java
+//    输出Ascii格式
+Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
+        .withMarkupLanguage(MarkupLanguage.ASCIIDOC) //设置生成格式
+        .withOutputLanguage(Language.ZH)  //设置语言中文还是其他语言
+        .withPathsGroupedBy(GroupBy.TAGS)
+        .withGeneratedExamples()
+        .withoutInlineSchema()
+        .build();
+
+Swagger2MarkupConverter.from(new URL("http://127.0.0.1:21001/v2/api-docs"))
+        .withConfig(config)
+        .build()
+        .toFile(Paths.get("src/main/resources/ascii-docs/asciidoc"));
+```
+
+#### 执行asciidoctor maven插件，将asciidoc转成html
+
+![1661997558566](image/README/1661997558566.png)
+
+#### 页面效果
+
+![1661997678600](image/README/1661997678600.png)
+
+
+### 3. apidocjs生成文档
+
+apidocjs是一款依赖nodejs根据程序代码注释自动生成文档的工具，比较适合生成restful api程序的文档，apidoc面向几乎所有的编程语言，因为基于js所以操作和使用都相当方便。
+
+apidocjs安装参考官方网址：http://apidocjs.com
+
+#### springboot rest api中使用：
+
+src/main/resources/目录下创建apidoc文件夹，文件夹中创建apidoc.json，内容如下：
+
+```json
+{
+  "name": "xxx开放接口",
+  "version": "1.0.0",
+  "description": "描述：xxxx",
+  "apidoc": {
+    "title": "xxx开放接口",
+    "url" : "http://127.0.0.1:21001",
+    "header": {
+      "title": "Introduction",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Best practices",
+      "filename": "footer.md"
+    }
+  }
+}
+```
+
+apidoc文件夹下创建header.md、footer.md两个md文件添加描述信息
+
+
+#### 接口中增加apidocjs的相关注释
+
+```java
+/**
+     * @api {GET} /user/queryUserByName 根据姓名查询用户
+     * @apiName 根据姓名查询用户
+     * @apiVersion 1.0.0
+     * @apiDescription 描述
+     * @apiGroup 用户接口
+     * @apiParam {String} name 用户姓名
+     * @apiExample {curl} Example usage:
+     *     curl -X POST http://127.0.0.1:21001/queryUserByName?name=张三 \
+     *     -H "Content-Type:application/json" \
+     *     -H "Authorization: Bearer <Access-Token>"
+     * @apiSuccess HttpResult
+     */
+    @GetMapping("queryUserByName")
+    public HttpResult queryUserByName(@RequestParam("name") String name) {
+        return HttpResult.success();
+    }
+```
+
+#### src/main/resources/apidoc目录下执行
+
+```shell
+apidoc -i ../../java/com/zx/apidoc/web/ -o ./
+```
+
+#### 页面效果
+
+![1661999026614](image/README/1661999026614.png)

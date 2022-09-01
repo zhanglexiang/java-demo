@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 
@@ -24,7 +25,7 @@ public class GeneratorAsciidocTest {
         Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
                 .withMarkupLanguage(MarkupLanguage.ASCIIDOC) //设置生成格式
                 .withOutputLanguage(Language.ZH)  //设置语言中文还是其他语言
-                .withPathsGroupedBy(GroupBy.REGEX)
+                .withPathsGroupedBy(GroupBy.TAGS)
                 .withGeneratedExamples()
                 .withoutInlineSchema()
                 .build();

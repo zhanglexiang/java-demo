@@ -53,7 +53,7 @@
                     <!--asciidoc文件目录-->
                     <sourceDirectory>src/main/resources/ascii-docs</sourceDirectory>
                     <!---生成html的路径-->
-                    <outputDirectory>src/main/resources/docs-html</outputDirectory>
+                    <outputDirectory>src/main/resources/ascii-docs/html</outputDirectory>
                     <backend>html</backend>
                     <sourceHighlighter>coderay</sourceHighlighter>
                     <attributes>

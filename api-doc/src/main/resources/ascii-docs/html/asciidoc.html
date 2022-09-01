@@ -527,6 +527,17 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_版本信息">1.1. 版本信息</a></li>
 <li><a href="#_联系方式">1.2. 联系方式</a></li>
 <li><a href="#_uri_scheme">1.3. URI scheme</a></li>
+<li><a href="#_标签">1.4. 标签</a></li>
+</ul>
+</li>
+<li><a href="#_paths">2. 资源</a>
+<ul class="sectlevel2">
+<li><a href="#_6352f1a072c12b600cd8669cd91a062d">2.1. 用户</a></li>
+</ul>
+</li>
+<li><a href="#_definitions">3. 定义</a>
+<ul class="sectlevel2">
+<li><a href="#_httpresult">3.1. HttpResult</a></li>
 </ul>
 </li>
 </ul>
@@ -559,12 +570,221 @@ table.CodeRay td.code>pre{padding:0}
 <em>基础路径</em> : /</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_标签">1.4. 标签</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>用户 : User Controller</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_paths">2. 资源</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_6352f1a072c12b600cd8669cd91a062d">2.1. 用户</h3>
+<div class="paragraph">
+<p>User Controller</p>
+</div>
+<div class="sect3">
+<h4 id="_detailusingget">2.1.1. 查询用户</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /user/{userId}</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_参数">参数</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">类型</th>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>userId</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">userId</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_响应">响应</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP代码</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_httpresult">HttpResult</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_生成">生成</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>/</strong></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http请求示例">HTTP请求示例</h5>
+<div class="sect5">
+<h6 id="_请求_path">请求 path</h6>
+<div class="listingblock">
+<div class="content">
+<pre>/user/0</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http响应示例">HTTP响应示例</h5>
+<div class="sect5">
+<h6 id="_响应_200">响应 200</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">errMsg</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">pageNum</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">success</span><span class="delimiter">&quot;</span></span> : <span class="value">true</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">totalPage</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">totalRecords</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definitions">3. 定义</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_httpresult">3.1. HttpResult</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">状态码:-1需要登入 -2需要弹框提醒<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">返回值<br>
+<strong>样例</strong> : <code>"object"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>errMsg</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">错误信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pageNum</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">从第几页开始<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>success</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">是否成功<br>
+<strong>样例</strong> : <code>true</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>totalPage</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">总页数<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>totalRecords</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">总数据量<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-30 20:55:40 CST
+Last updated 2022-09-01 09:44:20 CST
 </div>
 </div>
 </body>

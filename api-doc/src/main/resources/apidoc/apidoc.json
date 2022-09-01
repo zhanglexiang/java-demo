@@ -1,0 +1,17 @@
+{
+  "name": "XXX开放接口",
+  "version": "1.0.0",
+  "description": "描述：xxxx",
+  "apidoc": {
+    "title": "XXX开放接口",
+    "url" : "http://127.0.0.1:21001",
+    "header": {
+      "title": "Introduction",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Best practices",
+      "filename": "footer.md"
+    }
+  }
+}
