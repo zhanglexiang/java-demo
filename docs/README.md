@@ -478,8 +478,6 @@ Spring Validation默认会校验完所有字段，然后才抛出异常。可以
 
 Spring Validation 不仅只能用在接口上，Service层的方法上也一样可以用，其底层实现原理就是AOP，具体来说是通过MethodValidationPostProcessor动态注册AOP切面，然后使用MethodValidationInterceptor对切点方法织入增强。
 
-#### 源码： [https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation](https://github.com/zhanglexiang/java-demo/tree/master/springboot-validation)
-
 ## API文档生成的几种方案
 
 ### 1. Springfox-swagger2
@@ -545,7 +543,6 @@ public class Swagger2Config {
 }
 ```
 
-
 #### 接口中增加swagger相关注释
 
 ```java
@@ -579,9 +576,7 @@ public class UserController {
 }
 ```
 
-
-
-服务启动后访问：[http://127.0.0.1:21000/swagger-ui/index.html](http://127.0.0.1:21000/swagger-ui/index.html)  
+服务启动后访问：http://127.0.0.1:21000/swagger-ui/index.html
 
 ![1661862602356](image/README/1661862602356.png)
 
@@ -619,7 +614,6 @@ public class UserController {
 </plugin>
 ```
 
-
 #### 服务启动状态下执行main方法
 
 ```java
@@ -645,7 +639,6 @@ Swagger2MarkupConverter.from(new URL("http://127.0.0.1:21001/v2/api-docs"))
 #### 页面效果
 
 ![1661997678600](image/README/1661997678600.png)
-
 
 ### 3. apidocjs生成文档
 
@@ -678,7 +671,6 @@ src/main/resources/目录下创建apidoc文件夹，文件夹中创建apidoc.jso
 ```
 
 apidoc文件夹下创建header.md、footer.md两个md文件添加描述信息
-
 
 #### 接口中增加apidocjs的相关注释
 
