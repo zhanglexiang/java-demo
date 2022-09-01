@@ -51,7 +51,7 @@ GET /user/{userId}
 |===
 |类型|名称|说明|类型
 |**Path**|**userId** +
-__必填__|userId|integer (int64)
+__必填__|用户id|integer (int64)
 |===
 
 
